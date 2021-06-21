@@ -1,0 +1,43 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: rasa data validate &&  rasa train --fixed-model-name ./models/model --out
+      ./
+    deps:
+    - path: data
+      md5: b69d079a379fb59a42e3ed58a136ea54.dir
+      size: 2240
+      nfiles: 3
+    params:
+      config.yml:
+        pipeline:
+        policies:
+    outs:
+    - path: ./models
+      md5: 95d8c7499472121a7735a9b0af9a56b6.dir
+      size: 24936172
+      nfiles: 1
+  test:
+    cmd: rasa test --out ./results --model ./models/model.tar.gz
+    deps:
+    - path: ./models
+      md5: 95d8c7499472121a7735a9b0af9a56b6.dir
+      size: 24936172
+      nfiles: 1
+    params:
+      config.yml:
+        pipeline:
+        policies:
+    outs:
+    - path: ./results/TEDPolicy_report.json
+      md5: 99914b932bd37a50b983c5e7c90ae93b
+      size: 2
+    - path: ./results/intent_errors.json
+      md5: fb52c22b5d159ca16d0225f97c117f22
+      size: 161
+    - path: ./results/intent_report.json
+      md5: c54d3f91efc58a98841a732c261c3982
+      size: 1293
+    - path: ./results/story_report.json
+      md5: 2cbd04edf18a3ba1c88e7deeee5097a4
+      size: 1756

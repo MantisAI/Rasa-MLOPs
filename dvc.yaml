@@ -1,0 +1,28 @@
+
+stages:
+    train:
+      cmd: >-
+        rasa data validate && 
+        rasa train --fixed-model-name ./models/model --out ./
+      params: 
+        - config.yml:
+          - pipeline
+          - policies
+      deps:
+        - data
+      outs:
+        - ./models
+    test:
+      cmd: >-
+        rasa test --out ./results --model ./models/model.tar.gz
+      params: 
+        - config.yml:
+          - pipeline
+          - policies
+      deps:
+        - ./models
+      metrics:
+        - ./results/intent_errors.json
+        - ./results/intent_report.json
+        - ./results/story_report.json
+        - ./results/TEDPolicy_report.json

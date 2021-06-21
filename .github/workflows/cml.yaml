@@ -1,0 +1,34 @@
+name: model-training
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.5'
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          dvc repro
+
+          echo "## Metrics" > report.md
+          git fetch --prune
+          dvc metrics diff main --show-md | grep "Change\|\-\-\-" >> report.md
+          dvc metrics diff main --show-md | grep "weighted" | sort >> report.md
+          sed "s/results\///g" -i report.md
+          cml-send-comment report.md
+
+          dvc push
+        
+    - uses: EndBug/add-and-commit@v7
+      with:
+         add: 'dvc.lock --force'
+         message: 'chg: dvc repro'
+
