@@ -11,33 +11,81 @@ stages:
     params:
       config.yml:
         pipeline:
+        - name: WhitespaceTokenizer
+        - name: RegexFeaturizer
+        - name: LexicalSyntacticFeaturizer
+        - name: CountVectorsFeaturizer
+        - name: CountVectorsFeaturizer
+          analyzer: char_wb
+          min_ngram: 1
+          max_ngram: 4
+        - name: DIETClassifier
+          epochs: 100
+          constrain_similarities: true
+        - name: EntitySynonymMapper
+        - name: ResponseSelector
+          epochs: 100
+          constrain_similarities: true
+        - name: FallbackClassifier
+          threshold: 0.3
+          ambiguity_threshold: 0.1
         policies:
+        - name: MemoizationPolicy
+        - name: RulePolicy
+        - name: TEDPolicy
+          max_history: 5
+          epochs: 100
+          constrain_similarities: true
     outs:
     - path: ./models
-      md5: ebb2a6d64820fd89e6afc0eb3ccd27aa.dir
-      size: 24991420
+      md5: 5326c356ea04960cb4c6c33a899fcdd8.dir
+      size: 24960811
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: ebb2a6d64820fd89e6afc0eb3ccd27aa.dir
-      size: 24991420
+      md5: 5326c356ea04960cb4c6c33a899fcdd8.dir
+      size: 24960811
       nfiles: 1
     params:
       config.yml:
         pipeline:
+        - name: WhitespaceTokenizer
+        - name: RegexFeaturizer
+        - name: LexicalSyntacticFeaturizer
+        - name: CountVectorsFeaturizer
+        - name: CountVectorsFeaturizer
+          analyzer: char_wb
+          min_ngram: 1
+          max_ngram: 4
+        - name: DIETClassifier
+          epochs: 100
+          constrain_similarities: true
+        - name: EntitySynonymMapper
+        - name: ResponseSelector
+          epochs: 100
+          constrain_similarities: true
+        - name: FallbackClassifier
+          threshold: 0.3
+          ambiguity_threshold: 0.1
         policies:
+        - name: MemoizationPolicy
+        - name: RulePolicy
+        - name: TEDPolicy
+          max_history: 5
+          epochs: 100
+          constrain_similarities: true
     outs:
     - path: ./results/TEDPolicy_report.json
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: f867a6508243c824eff3e4a84b1d2edd
-      size: 162
+      md5: ddfc3fab2ee3076118ab4fc1185ec735
+      size: 161
     - path: ./results/intent_report.json
-      md5: dd752ed03da569c04253a201f2e1021b
-      size: 1295
+      md5: 730996612b74bf75fdce83ccaf61f8e8
+      size: 1296
     - path: ./results/story_report.json
-      md5: b28ced933efc0e61a6b06585707d5b3f
+      md5: 23d0f04f2637ad5532f3b4255121d0f8
       size: 1756
