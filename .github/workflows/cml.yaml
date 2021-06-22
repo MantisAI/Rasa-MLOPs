@@ -33,4 +33,5 @@ jobs:
       - uses: EndBug/add-and-commit@v7
         with:
          add: 'dvc.lock --force'
+         pull_strategy: 'NO-PULL'
          message: 'chg: dvc repro'
