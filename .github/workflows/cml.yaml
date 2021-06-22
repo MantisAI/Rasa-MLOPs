@@ -18,7 +18,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-west-1
         run: |
-          make virtualenv
+          pip install -r requirements.txt
           dvc repro
 
           echo "## Metrics" > report.md
