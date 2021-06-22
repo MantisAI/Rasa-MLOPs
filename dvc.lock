@@ -20,11 +20,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -34,19 +34,19 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./models
-      md5: 5326c356ea04960cb4c6c33a899fcdd8.dir
-      size: 24960811
+      md5: 3d28797851c0f104dedd4acf9a17ad2d.dir
+      size: 24925034
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: 5326c356ea04960cb4c6c33a899fcdd8.dir
-      size: 24960811
+      md5: 3d28797851c0f104dedd4acf9a17ad2d.dir
+      size: 24925034
       nfiles: 1
     params:
       config.yml:
@@ -60,11 +60,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -74,18 +74,18 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./results/TEDPolicy_report.json
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: ddfc3fab2ee3076118ab4fc1185ec735
+      md5: 2f7447ad726edebdd63edb90b4fabe77
       size: 161
     - path: ./results/intent_report.json
-      md5: 730996612b74bf75fdce83ccaf61f8e8
-      size: 1296
+      md5: 37ed80d2dbf170b306f9882e64a82145
+      size: 1295
     - path: ./results/story_report.json
-      md5: 23d0f04f2637ad5532f3b4255121d0f8
+      md5: b1ec3856f3e2d377926ec78c3bfb496a
       size: 1756
