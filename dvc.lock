@@ -20,11 +20,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -34,19 +34,19 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./models
-      md5: 7f13233d4497122ff58addbafa06efc4.dir
-      size: 24912325
+      md5: 939d0bb832f142952be9fe01590a332e.dir
+      size: 24940185
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: 7f13233d4497122ff58addbafa06efc4.dir
-      size: 24912325
+      md5: 939d0bb832f142952be9fe01590a332e.dir
+      size: 24940185
       nfiles: 1
     params:
       config.yml:
@@ -60,11 +60,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -74,18 +74,18 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./results/TEDPolicy_report.json
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: 5ac88fe59b244be9e88fe12cbb0c82ab
+      md5: 6352e17e7fb24e6ea75ede53bbc6a9cb
       size: 161
     - path: ./results/intent_report.json
-      md5: 84e99e2374fc45069fb00f803c3d0121
-      size: 1295
+      md5: 734ef4ae1f0fc12c3dbcc9a4747c0f0e
+      size: 1293
     - path: ./results/story_report.json
-      md5: 59e3d5adbd9d99418aeb3835c0ce8a54
+      md5: 4a536f4bc23c76ce3ac6d7e581ec6ed3
       size: 1756
