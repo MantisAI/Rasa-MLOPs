@@ -9,5 +9,7 @@ To Create the dvc repo, we ran the command `dvc init`.
 
 To create the virtual environment required to run the code, run `make virtualenv`.
 
-To recreate the workflow run: `dvc repro`
+To activate the virtual environment run: `source ./build/virtualenv/bin/activate`.
+
+To recreate the workflow run: `dvc repro`.
 
