@@ -3,7 +3,7 @@ stages:
     train:
       cmd: >-
         rasa data validate && 
-        rasa train --fixed-model-name ./models/model --out ./
+        rasa train --fixed-model-name ./models/model
       params: 
         - config.yml:
           - pipeline
@@ -11,7 +11,7 @@ stages:
       deps:
         - data
       outs:
-        - ./models
+        - ./models/
     test:
       cmd: >-
         rasa test --out ./results --model ./models/model.tar.gz

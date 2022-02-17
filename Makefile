@@ -17,6 +17,7 @@ $(VIRTUALENV)/.installed: requirements.txt
 	@mkdir -p $(VIRTUALENV)
 	virtualenv --python $(PYTHON_VERSION) $(VIRTUALENV)
 	$(VIRTUALENV)/bin/pip3 install -r requirements.txt
+	$(VIRTUALENV)/bin/pip3 install "s3fs==2021.8.0"
 	touch $@
 
 .PHONY: virtualenv
