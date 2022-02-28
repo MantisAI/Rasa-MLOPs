@@ -1,8 +1,7 @@
 schema: '2.0'
 stages:
   train:
-    cmd: rasa data validate &&  rasa train --fixed-model-name ./models/model --out
-      ./
+    cmd: rasa data validate &&  rasa train --fixed-model-name ./models/model
     deps:
     - path: data
       md5: b69d079a379fb59a42e3ed58a136ea54.dir
@@ -37,16 +36,16 @@ stages:
           epochs: 100
           constrain_similarities: true
     outs:
-    - path: ./models
-      md5: 7f13233d4497122ff58addbafa06efc4.dir
-      size: 24912325
+    - path: ./models/
+      md5: d737ef2076880943e57c9f6c593cf8a5.dir
+      size: 22973277
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: 7f13233d4497122ff58addbafa06efc4.dir
-      size: 24912325
+      md5: d737ef2076880943e57c9f6c593cf8a5.dir
+      size: 22973277
       nfiles: 1
     params:
       config.yml:
@@ -81,11 +80,11 @@ stages:
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: 5ac88fe59b244be9e88fe12cbb0c82ab
+      md5: 141f6fd5ad7affb28647aa3c88bb7240
       size: 161
     - path: ./results/intent_report.json
-      md5: 84e99e2374fc45069fb00f803c3d0121
-      size: 1295
+      md5: 83ebb72e781d55eeab468c3e090997b5
+      size: 1293
     - path: ./results/story_report.json
-      md5: 59e3d5adbd9d99418aeb3835c0ce8a54
-      size: 1756
+      md5: e8c4dc0484bf174aa310ce284bef53dd
+      size: 1780

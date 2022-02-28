@@ -1,5 +1,5 @@
 name: model-training
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   run:
     runs-on: [ubuntu-latest]
@@ -9,7 +9,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8.5'
+          python-version: '3.8'
+          cache: 'pip'
       - uses: iterative/setup-cml@v1
       - name: Train model
         env:
@@ -19,6 +20,8 @@ jobs:
           AWS_REGION: eu-west-1
         run: |
           pip install -r requirements.txt
+          pip install "s3fs==2021.8.0"
+          pip freeze
           dvc repro
 
           echo "## Metrics" > report.md
