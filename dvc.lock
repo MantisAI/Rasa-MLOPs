@@ -19,7 +19,7 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
@@ -37,15 +37,15 @@ stages:
           constrain_similarities: true
     outs:
     - path: ./models/
-      md5: 93d7045ff07db5114743b98829a26445.dir
-      size: 23002098
+      md5: 0d22d58a77d63eae3c72b3e92c4a68e2.dir
+      size: 22999926
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: 93d7045ff07db5114743b98829a26445.dir
-      size: 23002098
+      md5: 0d22d58a77d63eae3c72b3e92c4a68e2.dir
+      size: 22999926
       nfiles: 1
     params:
       config.yml:
@@ -59,7 +59,7 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
@@ -80,11 +80,11 @@ stages:
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: cdff0eaa36b4cb8c452b0be1097728f5
+      md5: e080240cc0238476dc0c321ebc0541b0
       size: 161
     - path: ./results/intent_report.json
-      md5: a1177ad67ccf7d42555b7269ff84aa58
+      md5: f32a099c773bf20579567b27b192d4cd
       size: 1295
     - path: ./results/story_report.json
-      md5: 7c8440ca85f8377a79b42b32e42a98c3
+      md5: d6206b1571a6402ce372d6c10ab56a5c
       size: 1780
