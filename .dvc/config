@@ -2,5 +2,5 @@
     remote = s3
     hardlink_lock = true
 ['remote "s3"']
-    url = s3://mantisnlp-blogs/rasa_mlops/dvc
+    url = s3://mantisnlp-public/rasa_mlops/dvc
     region = eu-west-1
