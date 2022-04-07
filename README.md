@@ -1,6 +1,6 @@
 # Rasa MLOPs example
 
-Example repro that accompanies the blog [MLOps for developing Conversational AI in Rasa, using DVC and CML]().
+Example repro that accompanies the blog [MLOps for developing Conversational AI in Rasa, using DVC and CML](https://medium.com/mantisnlp/mlops-for-conversational-ai-with-rasa-dvc-and-cml-part-i-beec756e8e7f).
 
 The Rasa component here was created by running `rasa init`. No substantive changes have been made.
 To Create the dvc repo, we ran the command `dvc init`.
