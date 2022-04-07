@@ -25,7 +25,7 @@ jobs:
           dvc repro
 
           echo "## Metrics" > report.md
-          git fetch --prune
+          cml ci
           dvc metrics diff main --show-md | grep "Change\|\-\-\-" >> report.md
           dvc metrics diff main --show-md | grep "weighted" | sort >> report.md
           sed "s/results\///g" -i report.md
