@@ -25,16 +25,12 @@ jobs:
           dvc repro
 
           echo "## Metrics" > report.md
-          git fetch --prune
+          cml ci
           dvc metrics diff main --show-md | grep "Change\|\-\-\-" >> report.md
           dvc metrics diff main --show-md | grep "weighted" | sort >> report.md
           sed "s/results\///g" -i report.md
-          cml-send-comment report.md
+          cml-send-github-check report.md
 
           dvc push
+          git commit -m 'dvc repro' dvc.lock && git push
         
-      - uses: EndBug/add-and-commit@v7
-        with:
-         add: 'dvc.lock --force'
-         pull_strategy: 'NO-PULL'
-         message: 'chg: dvc repro'
