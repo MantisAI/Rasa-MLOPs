@@ -19,11 +19,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -33,19 +33,19 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./models/
-      md5: 49ab59cc84a729ee963d1d1046d3b51e.dir
-      size: 22998624
+      md5: ab011d530911553f35347a529c2f324d.dir
+      size: 23033602
       nfiles: 1
   test:
     cmd: rasa test --out ./results --model ./models/model.tar.gz
     deps:
     - path: ./models
-      md5: 49ab59cc84a729ee963d1d1046d3b51e.dir
-      size: 22998624
+      md5: ab011d530911553f35347a529c2f324d.dir
+      size: 23033602
       nfiles: 1
     params:
       config.yml:
@@ -59,11 +59,11 @@ stages:
           min_ngram: 1
           max_ngram: 4
         - name: DIETClassifier
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: EntitySynonymMapper
         - name: ResponseSelector
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
         - name: FallbackClassifier
           threshold: 0.3
@@ -73,18 +73,18 @@ stages:
         - name: RulePolicy
         - name: TEDPolicy
           max_history: 5
-          epochs: 100
+          epochs: 150
           constrain_similarities: true
     outs:
     - path: ./results/TEDPolicy_report.json
       md5: 99914b932bd37a50b983c5e7c90ae93b
       size: 2
     - path: ./results/intent_errors.json
-      md5: 94e058079c0bddcdb946ac84a6694688
+      md5: 48860c625fc5bde591e6202e0fec8106
       size: 161
     - path: ./results/intent_report.json
-      md5: d1628482e2a3ec48c15570e6fbc01715
-      size: 1296
+      md5: e4f7149a5042f17e1c72df200f7a071e
+      size: 1295
     - path: ./results/story_report.json
-      md5: a03d84ee169f25809ed369d97be59652
+      md5: 7211b2847f054d41c734c912cdbd6685
       size: 1780
