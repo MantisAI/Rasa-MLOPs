@@ -29,7 +29,7 @@ jobs:
           dvc metrics diff main --show-md | grep "Change\|\-\-\-" >> report.md
           dvc metrics diff main --show-md | grep "weighted" | sort >> report.md
           sed "s/results\///g" -i report.md
-          cml-send-comment report.md
+          cml-send-comment --pr report.md
 
           dvc push
         
